@@ -1,3 +1,5 @@
-<h2>Uploading... <%= @filename %></h2>
+<h2><%= @playlist.name %></h2>
 
-<%= video_tag "firstAttempt.mp4", :size => "320x230", :controls => true %>
+<% @tracks.each do |track| %>
+  <p><%= track.name %></p>
+<% end %>

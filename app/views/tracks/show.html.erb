@@ -1,5 +1,5 @@
 <h2><%= @track.name %></h2>
-<img src="<%= @track.image %>">
+<%= image_tag @track.image.url(:thumb) %>
 <%= form_for @track, html: {multipart: true} do |f| %>
   <%= f.file_field :image %>
   <%= f.submit %>

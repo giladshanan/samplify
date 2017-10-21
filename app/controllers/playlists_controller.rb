@@ -57,15 +57,21 @@ class PlaylistsController < ApplicationController
 
 ###############
 
-  # def show
-    # @file_name = 'firstAttempt.mp4'
-
-    # s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-    # obj = s3.bucket('dbc-team-samplify-test').object(@file_name)
-    # puts "Uploading file #{@file_name}"
-    # obj.upload_file("app/assets/images/#{@file_name}")
-    # puts "Done"
-  # end
+  def show
+    # p session[:user_id]
+    spotify_user = RSpotify::User.find(session[:user_id])
+    @playlists = spotify_user.playlists
+    @playlists.each_with_index do |playlist, index|
+      if playlist.id == params[:id]
+        @playlist = playlist
+      end
+    end
+    # @playlist = spotify_user.playlists.first
+    @tracks = @playlist.tracks
+    # @playlists = spotify_user.playlists
+    # @playlists.find_index(@playlist)
+    #current_user
+  end
 
   def destroy
     file_name = 'output3.mp3'
