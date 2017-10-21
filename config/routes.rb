@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get "/playlists/delete" => "playlists#destroy"
 
+  get "/auth/spotify/callback", to: 'users#spotify'
+
 end
