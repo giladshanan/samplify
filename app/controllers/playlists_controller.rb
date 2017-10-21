@@ -2,7 +2,7 @@ require 'aws-sdk'
 
 class PlaylistsController < ApplicationController
 
-  def index
+def index
   #   RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
   #   # me = RSpotify::User.find('ryanmccool13')
 

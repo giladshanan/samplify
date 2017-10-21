@@ -13,7 +13,7 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # dotenv
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -46,10 +46,10 @@ gem 'paperclip-av-transcoder'
 gem 'aws-sdk', '~> 3'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-ec2', '~> 1'
+gem 'rspec-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
