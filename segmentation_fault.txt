@@ -1,0 +1,16 @@
+: Input #0, concat, from 'app/assets/images/test-playlist-images.txt':
+2017-10-21T17:00:00.868417+00:00 app[web.1]:   Duration: N/A, start: 0.000000, bitrate: N/A
+2017-10-21T17:00:00.868445+00:00 app[web.1]:     Stream #0:0: Video: mjpeg, yuvj444p(pc, bt470bg/unknown/unknown), 640x640 [SAR 300:300 DAR 1:1], 25 tbr, 25 tbn, 25 tbc
+2017-10-21T17:00:00.869679+00:00 app[web.1]: Input #1, mp3, from 'app/assets/images/keepItSimple.mp3':
+2017-10-21T17:00:00.869679+00:00 app[web.1]:   Metadata:
+2017-10-21T17:00:00.869681+00:00 app[web.1]:     encoder         : Lavf57.83.100
+2017-10-21T17:00:00.869701+00:00 app[web.1]:   Duration: 00:05:00.41, start: 0.025057, bitrate: 96 kb/s
+2017-10-21T17:00:00.869723+00:00 app[web.1]:     Stream #1:0: Audio: mp3, 44100 Hz, stereo, s16p, 96 kb/s
+2017-10-21T17:00:00.869724+00:00 app[web.1]:     Metadata:
+2017-10-21T17:00:00.869725+00:00 app[web.1]:       encoder         : LAME3.99r
+2017-10-21T17:00:00.870504+00:00 app[web.1]: Stream mapping:
+2017-10-21T17:00:00.870506+00:00 app[web.1]:   Stream #0:0 -> #0:0 (mjpeg (native) -> h264 (libx264))
+2017-10-21T17:00:00.870519+00:00 app[web.1]:   Stream #1:0 -> #0:1 (mp3 (native) -> aac (native))
+2017-10-21T17:00:00.870519+00:00 app[web.1]: Press [q] to stop, [?] for help
+2017-10-21T17:00:00.874105+00:00 app[web.1]: Segmentation fault
+2017-10-21T17:00:00.877908+00:00 app[web.1]: Uploading file sampler.mp4
