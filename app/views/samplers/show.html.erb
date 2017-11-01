@@ -21,7 +21,7 @@
     <%= button_to "Home", user_path(current_user), class: "left button", method: :get %>
     <div class="download-link"></div>
   <% else %>
-    <%= button_to 'Login', '/auth/spotify?show_dialog=true', class: "left button", method: :get %>
+    <%= button_to 'Login', '/auth/spotify', class: "left button", method: :get %>
   <% end %>
 
   <%= button_to "Spotify", @sampler.spotify_url, class: "right button", method: :get %>
