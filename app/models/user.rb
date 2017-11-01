@@ -8,9 +8,9 @@ class User < ApplicationRecord
 end
 
 def name_check
-  self.display_name = self.email if self.display_name.length < 1
+  self.display_name = self.email if self.display_name.nil?
 end
 
 def image_check
-  self.profile_pic_url = "images/cd.png" if self.profile_pic_url.length < 1
+  self.profile_pic_url = "cd.png" if self.profile_pic_url.nil?
 end
