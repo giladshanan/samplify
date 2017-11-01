@@ -1,6 +1,5 @@
 <div class="profile-pic-container">
-  <%= image_tag "#{@user.profile_pic_url}", class:"profile-pic" %>
- <!--  <img class="profile-pic" src="cd.png" alt="profile picture"> -->
+  <%= image_tag "#{@user.profile_pic_url}", class:"profile-pic", alt:"profile picture" %>
   <h2 class="profile-name"><%= @user.display_name %></h2>
 </div>
 
