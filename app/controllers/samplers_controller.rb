@@ -2,15 +2,19 @@ class SamplersController < ApplicationController
 
   def new
     @spotify_user = RSpotify::User.find(session[:user_id])
+    # @playlist = Playlist.find_or_create_by(spotify_id: params[:id])
     @playlists = @spotify_user.playlists
-    @playlists.each do |playlist|
-      if playlist.id == params[:id]
-        @playlist = playlist
-      end
+    @playlist = @playlists.find do |playlist|
+      playlist.id == params[:id]
     end
+    p @playlist
+    # @playlists.each do |playlist|
+    #   if playlist.id == params[:id]
+    #     @playlist = playlist
+    #   end
+    # end
     @user = User.find_by(spotify_id: session[:user_id])
     @sampler = Sampler.find_or_create_by(user_id: @user.id, title: @playlist.name, spotify_url: @playlist.external_urls["spotify"])
-    # @sampler.samplified = false if !@sampler.samplified
     session[:playlist_id] = @playlist.id
 
     if @sampler.tracks.empty?
