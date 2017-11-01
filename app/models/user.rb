@@ -12,5 +12,5 @@ def name_check
 end
 
 def image_check
-  self.profile_pic_url = "images/cd.png" if self.images.nil? || self.images.empty?
+  self.profile_pic_url = "images/cd.png" if self.profile_pic_url.length < 1
 end
