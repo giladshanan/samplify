@@ -3,22 +3,27 @@ $(document).on('turbolinks:load', function() {
     $("#pause").hide()
     $(".mySlides").hide()
     $(".mySlides").first().show()
+
     var tar_coord_x = $(".slideshow-container").offset().left;
     var tar_coord_y = $(".slideshow-container").offset().top;
-    var audioController = $("audio")[0]
-    audioController.volume = 0.35
     var imageIndex = 0
     var slideIndex = 0
+    var playClickCount = 1
+    var audioController = $("audio")[0]
+    var startingVolume = 0.35
+    audioController.volume = startingVolume
+
     thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
     $(".thumbs").eq(imageIndex+1).css( "opacity", 0.33 )
+
     $(".thumbs").on("click", function(event){
-      audioController.volume = 0.35
+      audioController.volume = startingVolume
       audioController.currentTime = ($(this).parent().index()) * 30
       if (audioController.paused){
         $("#play").trigger( "click" );
       }
     })
-    var count = 1
+
     $("#play-buttons").on("click", function(event) {
       if (audioController.paused){
         audioController.play();
@@ -29,7 +34,7 @@ $(document).on('turbolinks:load', function() {
         $("#play").show()
         $("#pause").hide()
       }
-      var playCount = count
+      var playCount = playClickCount
       setInterval(function() {
         if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 1 && playCount === 1) {
           audioController.volume /= 0.7
@@ -66,7 +71,7 @@ $(document).on('turbolinks:load', function() {
             thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
           }
         }
-      count += 1
+      playClickCount += 1
       }, 1000)
     })
     var downloadChecker = setInterval(function(){
