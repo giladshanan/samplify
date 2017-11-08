@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function() {
     var slideIndex = 0
     var playClickCount = 1
     var audioController = $("audio")[0]
-    var startingVolume = 0.33
+    var startingVolume = 0.35
     audioController.volume = startingVolume
 
     thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
@@ -34,29 +34,26 @@ $(document).on('turbolinks:load', function() {
         $("#play").toggle()
         $("#pause").toggle()
       }
-      // ideas= ["named functions", "nested conditional", "a method that takes in current time and returns the vol multiplier", "fade every .5 second", "better solution for click counter"]
+    })
+      // ideas= ["named functions", "a method that takes in current time and returns the vol multiplier", "better solution for click counter"]
+    $("#play-buttons").one("click", function(event) {
 
       var playCount = playClickCount
 
       setInterval(function() {
         var currentTrackTime = Math.floor(audioController.currentTime) % 30
         if (audioController.paused === false && playCount === 1) {
-          if ((currentTrackTime) === 1 || (currentTrackTime) === 2 || (currentTrackTime) === 3 ) {
-            //audioController.volume = 1 - (1 - audioController.volume )/2
-            //audioController.volume += currentTrackTime
-            // audioController.volume = 1 - (1 - audioController.volume )/2
-            // audioController.volume /= 0.7
-            audioController.volume *= ((0+currentTrackTime) / 3 )
+          if (currentTrackTime === 1 || currentTrackTime === 2 || currentTrackTime === 3 ) {
+            audioController.volume /= 0.85
             console.log(audioController.volume)
           }
-          if (((currentTrackTime) === 28 || (currentTrackTime) === 29 || (currentTrackTime) === 0) && (audioController.volume > 0.4) ) {
-            // audioController.volume *= (30-currentTrackTime)/3 - 1
-            audioController.volume *= 0.7
+          if ((currentTrackTime === 28 || currentTrackTime === 29 || currentTrackTime === 0) && (audioController.volume > 0.4) ) {
+            audioController.volume *= 0.85
             console.log(audioController.volume)
           }
         }
       playClickCount += 1
-      }, 1000)
+      }, 500)
 
       setInterval(function() {
         var trackTime = Math.floor(audioController.currentTime) % 30
