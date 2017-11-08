@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function() {
     var slideIndex = 0
     var playClickCount = 1
     var audioController = $("audio")[0]
-    var startingVolume = 0.35
+    var startingVolume = 0.33
     audioController.volume = startingVolume
 
     thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
@@ -27,34 +27,41 @@ $(document).on('turbolinks:load', function() {
     $("#play-buttons").on("click", function(event) {
       if (audioController.paused){
         audioController.play();
-        $("#pause").show()
-        $("#play").hide()
+        $("#pause").toggle()
+        $("#play").toggle()
       } else {
         audioController.pause();
-        $("#play").show()
-        $("#pause").hide()
+        $("#play").toggle()
+        $("#pause").toggle()
       }
+      // ideas= ["named functions", "nested conditional", "a method that takes in current time and returns the vol multiplier", "fade every .5 second", "better solution for click counter"]
+
       var playCount = playClickCount
+
       setInterval(function() {
-        if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 1 && playCount === 1) {
-          audioController.volume /= 0.7
-        }
-        if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 2 && playCount === 1) {
-          audioController.volume /= 0.7
-        }
-        if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 3 && playCount === 1) {
-          audioController.volume = 1
-        }
-        if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 28 && playCount === 1) {
-          audioController.volume *= 0.7
-        }
-        if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 29 && playCount === 1) {
-          audioController.volume *= 0.7
-        }
-        if ($("audio").get(0).paused === false && (Math.floor(audioController.currentTime) % 30 ) === 0 && playCount === 1) {
-          if (audioController.volume > 0.4) {
-            audioController.volume *= 0.7
+        var currentTrackTime = Math.floor(audioController.currentTime) % 30
+        if (audioController.paused === false && playCount === 1) {
+          if ((currentTrackTime) === 1 || (currentTrackTime) === 2 || (currentTrackTime) === 3 ) {
+            //audioController.volume = 1 - (1 - audioController.volume )/2
+            //audioController.volume += currentTrackTime
+            // audioController.volume = 1 - (1 - audioController.volume )/2
+            // audioController.volume /= 0.7
+            audioController.volume *= ((0+currentTrackTime) / 3 )
+            console.log(audioController.volume)
           }
+          if (((currentTrackTime) === 28 || (currentTrackTime) === 29 || (currentTrackTime) === 0) && (audioController.volume > 0.4) ) {
+            // audioController.volume *= (30-currentTrackTime)/3 - 1
+            audioController.volume *= 0.7
+            console.log(audioController.volume)
+          }
+        }
+      playClickCount += 1
+      }, 1000)
+
+      setInterval(function() {
+        var trackTime = Math.floor(audioController.currentTime) % 30
+
+        if (audioController.paused === false && (trackTime) === 0 && playCount === 1) {
           if ($(".thumbs").first().hasClass('start')) {
             $(".thumbs").first().removeClass("start")
             $(".thumbs").first().addClass("grow")
@@ -73,7 +80,9 @@ $(document).on('turbolinks:load', function() {
         }
       playClickCount += 1
       }, 1000)
+
     })
+
     var downloadChecker = setInterval(function(){
       var audioSource = $("audio").attr("src");
       var samplerID = /\d+(?=.mp3)/g.exec(audioSource);
