@@ -8,7 +8,6 @@ $(document).on('turbolinks:load', function() {
     var tar_coord_y = $(".slideshow-container").offset().top;
     var imageIndex = 0
     var slideIndex = 0
-    var playClickCount = 1
     var audioController = $("audio")[0]
     var startingVolume = 0.35
     audioController.volume = startingVolume
@@ -35,14 +34,11 @@ $(document).on('turbolinks:load', function() {
         $("#pause").toggle()
       }
     })
-      // ideas= ["named functions", "a method that takes in current time and returns the vol multiplier", "better solution for click counter"]
+      // ideas= ["named functions", "a method that takes in current time and returns the vol multiplier"]
     $("#play-buttons").one("click", function(event) {
-
-      var playCount = playClickCount
-
       setInterval(function() {
         var currentTrackTime = Math.floor(audioController.currentTime) % 30
-        if (audioController.paused === false && playCount === 1) {
+        if (audioController.paused === false) {
           if (currentTrackTime === 1 || currentTrackTime === 2 || currentTrackTime === 3 ) {
             audioController.volume /= 0.85
             console.log(audioController.volume)
@@ -52,13 +48,12 @@ $(document).on('turbolinks:load', function() {
             console.log(audioController.volume)
           }
         }
-      playClickCount += 1
       }, 500)
 
       setInterval(function() {
         var trackTime = Math.floor(audioController.currentTime) % 30
 
-        if (audioController.paused === false && (trackTime) === 0 && playCount === 1) {
+        if (audioController.paused === false && (trackTime) === 0 ) {
           if ($(".thumbs").first().hasClass('start')) {
             $(".thumbs").first().removeClass("start")
             $(".thumbs").first().addClass("grow")
@@ -75,7 +70,6 @@ $(document).on('turbolinks:load', function() {
             thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
           }
         }
-      playClickCount += 1
       }, 1000)
 
     })
