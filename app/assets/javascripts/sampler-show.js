@@ -1,4 +1,6 @@
 $(document).on('turbolinks:load', function() {
+  // ideas= ["named functions", "object-oriented", "a method that takes in current time and returns the vol multiplier"]
+
   if (window.location.href.search(/(samplers\/\d+)/) > 0) {
     $("#pause").hide()
     $(".mySlides").hide()
@@ -15,40 +17,12 @@ $(document).on('turbolinks:load', function() {
     thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
     $(".thumbs").eq(imageIndex+1).css( "opacity", 0.33 )
 
-    $(".thumbs").on("click", function(event){
-      audioController.volume = startingVolume
-      audioController.currentTime = ($(this).parent().index()) * 30
-      if (audioController.paused){
-        $("#play").trigger( "click" );
-      }
-    })
+    $(".thumbs").on("click", playClickedThumb)
 
-    $("#play-buttons").on("click", function(event) {
-      if (audioController.paused){
-        audioController.play();
-        $("#pause").toggle()
-        $("#play").toggle()
-      } else {
-        audioController.pause();
-        $("#play").toggle()
-        $("#pause").toggle()
-      }
-    })
-      // ideas= ["named functions", "a method that takes in current time and returns the vol multiplier"]
+    $("#play-buttons").on("click", handlePlayPause)
+
     $("#play-buttons").one("click", function(event) {
-      setInterval(function() {
-        var currentTrackTime = Math.floor(audioController.currentTime) % 30
-        if (audioController.paused === false) {
-          if (currentTrackTime === 1 || currentTrackTime === 2 || currentTrackTime === 3 ) {
-            audioController.volume /= 0.85
-            console.log(audioController.volume)
-          }
-          if ((currentTrackTime === 28 || currentTrackTime === 29 || currentTrackTime === 0) && (audioController.volume > 0.4) ) {
-            audioController.volume *= 0.85
-            console.log(audioController.volume)
-          }
-        }
-      }, 500)
+      setInterval(handleFading, 500)
 
       setInterval(function() {
         var trackTime = Math.floor(audioController.currentTime) % 30
@@ -106,4 +80,42 @@ function thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex) {
 
 function originalToThumb(imageIndex) {
   $(".thumbs").eq(imageIndex).css("transform", "");
+}
+
+function playClickedThumb(event) {
+  var audioController = $("audio")[0]
+  var startingVolume = 0.35
+  audioController.volume = startingVolume
+  audioController.currentTime = ($(this).parent().index()) * 30
+  if (audioController.paused){
+    $("#play").trigger( "click" );
+  }
+}
+
+function handlePlayPause(event) {
+  var audioController = $("audio")[0]
+  if (audioController.paused){
+    audioController.play();
+    $("#pause").toggle()
+    $("#play").toggle()
+  } else {
+    audioController.pause();
+    $("#play").toggle()
+    $("#pause").toggle()
+  }
+}
+
+function handleFading(event) {
+  var audioController = $("audio")[0]
+  var currentTrackTime = Math.floor(audioController.currentTime) % 30
+  if (audioController.paused === false) {
+    if (currentTrackTime === 1 || currentTrackTime === 2 || currentTrackTime === 3 ) {
+      audioController.volume /= 0.85
+      console.log(audioController.volume)
+    }
+    if ((currentTrackTime === 28 || currentTrackTime === 29 || currentTrackTime === 0) && (audioController.volume > 0.4) ) {
+      audioController.volume *= 0.85
+      console.log(audioController.volume)
+    }
+  }
 }
