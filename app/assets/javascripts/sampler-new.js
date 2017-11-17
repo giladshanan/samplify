@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
   }
 })
 
-let handleImageUpload = function() {
+function handleImageUpload(event) {
   var selectFileButton = $(this).siblings().find("input")[3]
   var updateFileButton = $(this).siblings().find("input")[4]
   $(selectFileButton).trigger( "click" );

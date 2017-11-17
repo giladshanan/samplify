@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-var toggleView = function() {
+function toggleView(event) {
   $(".playlist-button").toggleClass("pressed");
   $(".sampler-button").toggleClass("pressed");
   $(".page-content-left").toggle();
