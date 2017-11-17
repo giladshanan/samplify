@@ -45,28 +45,12 @@ $(document).on('turbolinks:load', function() {
           }
         }
       }, 1000)
-
     })
-
-    var downloadChecker = setInterval(function(){
-      var audioSource = $("audio").attr("src");
-      var samplerID = /\d+(?=.mp3)/g.exec(audioSource);
-      var url = "/samplers/check/" + samplerID
-      var request = $.ajax({
-        url: url
-      });
-      request.done(function(response) {
-        $(".download-link").html("")
-        $(".download-link").append(response)
-      });
-    }, 5000)
+    setInterval(checkDownloadStatus, 5000)
   } else {
     for (var i = 1; i < 9999; i++) {
       window.clearInterval(i)
     }
-    $("#spotify-logo").on("click", function() {
-      $("a")[0].click();
-    })
   }
 })
 
@@ -118,4 +102,18 @@ function handleFading(event) {
       console.log(audioController.volume)
     }
   }
+}
+
+function checkDownloadStatus(event) {
+  console.log("checking for download-link")
+  var audioSource = $("audio").attr("src");
+  var samplerID = /\d+(?=.mp3)/g.exec(audioSource);
+  var url = "/samplers/check/" + samplerID
+  var request = $.ajax({
+    url: url
+  });
+  request.done(function(response) {
+    $(".download-link").html("")
+    $(".download-link").append(response)
+  });
 }
