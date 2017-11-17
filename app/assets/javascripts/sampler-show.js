@@ -1,50 +1,25 @@
 $(document).on('turbolinks:load', function() {
-  // ideas= ["named functions", "object-oriented", "a method that takes in current time and returns the vol multiplier"]
+  // ideas for further refactoring => ["object-oriented", "a method that takes in current time and returns the vol multiplier"]
 
   if (window.location.href.search(/(samplers\/\d+)/) > 0) {
     $("#pause").hide()
     $(".mySlides").hide()
     $(".mySlides").first().show()
-
-    var tar_coord_x = $(".slideshow-container").offset().left;
-    var tar_coord_y = $(".slideshow-container").offset().top;
-    var imageIndex = 0
-    var slideIndex = 0
+    tar_coord_x = $(".slideshow-container").offset().left;
+    tar_coord_y = $(".slideshow-container").offset().top;
+    imageIndex = 0
+    slideIndex = 0
     var audioController = $("audio")[0]
     var startingVolume = 0.35
     audioController.volume = startingVolume
-
     thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
     $(".thumbs").eq(imageIndex+1).css( "opacity", 0.33 )
-
     $(".thumbs").on("click", playClickedThumb)
-
     $("#play-buttons").on("click", handlePlayPause)
-
     $("#play-buttons").one("click", function(event) {
+      var currentImageIndex = imageIndex
       setInterval(handleFading, 500)
-
-      setInterval(function() {
-        var trackTime = Math.floor(audioController.currentTime) % 30
-
-        if (audioController.paused === false && (trackTime) === 0 ) {
-          if ($(".thumbs").first().hasClass('start')) {
-            $(".thumbs").first().removeClass("start")
-            $(".thumbs").first().addClass("grow")
-          }
-          var startingIndex = slideIndex
-          if (startingIndex != Math.floor(audioController.currentTime/30)) {
-            originalToThumb(imageIndex);
-            slideIndex = Math.floor(audioController.currentTime/30)
-            imageIndex = slideIndex * 2
-            $(".thumbs").css("opacity", 1)
-            $(".thumbs").eq(imageIndex+1).css( "opacity", 0.33 )
-            $(".mySlides").hide()
-            $(".mySlides").eq(slideIndex).attr("style", "display:block")
-            thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
-          }
-        }
-      }, 1000)
+      setInterval(handleAnimation, 1000)
     })
     setInterval(checkDownloadStatus, 5000)
   } else {
@@ -116,4 +91,31 @@ function checkDownloadStatus(event) {
     $(".download-link").html("")
     $(".download-link").append(response)
   });
+}
+
+var tar_coord_x;
+var tar_coord_y;
+var imageIndex;
+var slideIndex;
+
+function handleAnimation(event) {
+  var audioController = $("audio")[0]
+  var trackTime = Math.floor(audioController.currentTime) % 30
+  if (audioController.paused === false && (trackTime) === 0 ) {
+    if ($(".thumbs").first().hasClass('start')) {
+      $(".thumbs").first().removeClass("start")
+      $(".thumbs").first().addClass("grow")
+    }
+    var startingIndex = slideIndex
+    if (startingIndex != Math.floor(audioController.currentTime/30)) {
+      originalToThumb(imageIndex);
+      slideIndex = Math.floor(audioController.currentTime/30)
+      imageIndex = slideIndex * 2
+      $(".thumbs").css("opacity", 1)
+      $(".thumbs").eq(imageIndex+1).css( "opacity", 0.33 )
+      $(".mySlides").hide()
+      $(".mySlides").eq(slideIndex).attr("style", "display:block")
+      thumbToOriginal(tar_coord_x, tar_coord_y, imageIndex);
+    }
+  }
 }
