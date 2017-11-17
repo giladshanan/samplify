@@ -1,7 +1,9 @@
 <div class="main-sub">
-  <%= image_tag "samplify.png", id: "splash-img" %>
+  <div id="splash-container">
+    <%= image_tag "samplify.png", id: "splash-img" %>
 
-  <h1 id="splash-title">Samplify!</h1>
+    <h1 id="splash-title">Samplify!</h1>
+  </div>
   <div id="login">
 
     <%= link_to 'Sign in with Spotify', '/auth/spotify' %>

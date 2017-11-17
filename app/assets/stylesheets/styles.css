@@ -82,6 +82,8 @@ h1 {
   font-family: 'Permanent Marker', cursive;
 }
 
+/*User Show*/
+
 .profile-pic {
   margin: auto;
   width: 40%;
@@ -258,38 +260,34 @@ a {
 /*Splash Page*/
 
 #splash-img {
-  width: 320px;
-}
-
-.main-sub {
-  text-align: center;
+  width: 100%;
 }
 
 #splash-title {
   position: absolute;
-  top: 250px;
-  left: 350px;
-  /*text-align: center;*/
-  font-size: 2em;
+  top: 7em;
+  left: 2.7em;
+  font-size: 6.5em;
 }
 
 #login {
-  font-size: 1.5em;
+  text-align: center;
+  font-size: 3em;
   border: 5px solid #E98074;
   border-radius: 35px;
-  margin: auto;
-  height: 130px;
+  margin: 100px;
+  height: 200px;
   padding: 28px;
-  width: 330px;
+  width: 80%;
 }
 
 #login a {
-  vertical-align: 25%;
+  vertical-align: 100%;
   margin-right: 15px;
 }
 
 #spotify-logo {
-  width: 10%;
+  width: 20%;
   display: inline-block;
 }
 

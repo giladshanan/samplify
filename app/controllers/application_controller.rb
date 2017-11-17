@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
   helper_method :authorized?
   helper_method :current_user
-  helper_method :mobile_device?
+  helper_method :desktop_device?
 
   def current_user
     @current_user ||= User.find_by(spotify_id: session[:user_id])
@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/404.html", :status => 404 unless authorized?(owner)
   end
 
-  def mobile_device?
-    request.user_agent =~ /Mobile|webOS/
+  def desktop_device?
+    !(request.user_agent =~ /Mobile|webOS/)
   end
 
 end
