@@ -1,0 +1,144 @@
+/*User Index*/
+#splash-container {
+  text-align: center;
+}
+
+#splash-img {
+  width: 320px;
+}
+
+.main-sub {
+  text-align: center;
+}
+
+#splash-title {
+  position: absolute;
+  top: 250px;
+  left: 15px;
+  right: 0;
+  font-size: 2em;
+}
+
+#login {
+  font-size: 1.5em;
+  border: 5px solid #E98074;
+  border-radius: 35px;
+  margin: auto;
+  height: 130px;
+  padding: 28px;
+  width: 330px;
+}
+
+#login a {
+  vertical-align: 25%;
+  margin-right: 15px;
+}
+
+#spotify-logo {
+  width: 10%;
+  display: inline-block;
+}
+
+
+/*User Show*/
+
+.profile-pic {
+  margin: auto;
+  width: 40%;
+  border-radius: 25%;
+  padding: 10px;
+}
+
+.profile-name {
+  font-size: 5em;
+  display: inline-block;
+  color: #E85A4F;
+  margin: auto;
+  position: absolute;
+  top: 2em;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-family: 'Permanent Marker', cursive;
+  margin-left: 2%;
+}
+
+.profile-buttons {
+  position: relative;
+  height: 70px;
+  width: 100%;
+  display: flex;
+}
+
+.profile-page {
+/*  display: flex;*/
+  justify-content: space-evenly;
+  height: 75%;
+  padding-bottom: 150px;
+  width: 100%;
+}
+
+.playlist-link {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: .2em;
+}
+
+.no-samplers {
+  color: #E85A4F;
+  font-family: 'Francoise One', sans-serif;
+  font-weight: bold;
+}
+
+.profile-pic-container {
+  height: 25%;
+}
+
+.page-content-left, .page-content-right {
+  height: 60%;
+  width: 90%;
+  padding-right: 5px;
+  /*overflow-y: scroll;*/
+  overflow-x: hidden;
+  border: 3px solid #E98074;
+  border-radius: 15px;
+  display: block;
+  position: absolute;
+  top: 33em;
+  left: 3em;
+}
+
+.page-content-right {
+  display: none;
+}
+
+
+/*###########################*/
+/* LISTED ITEMS */
+/*###########################*/
+
+.playlists {
+  font-size: 2em;
+}
+
+.list-style-none {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.button-link a {
+  text-decoration: none;
+  font-size: 2em;
+  color: #695958;
+}
+
+.button-link {
+  margin-bottom: 20px;
+}
+
+.samplify-button-block {
+/*  overflow-x: hidden;
+  max-width: 80%;*/
+}
+
