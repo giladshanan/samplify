@@ -1,0 +1,31 @@
+#splash-img {
+  width: 100%;
+}
+
+#splash-title {
+  position: absolute;
+  top: 7em;
+  left: 2.7em;
+  font-size: 6.5em;
+}
+
+#login {
+  text-align: center;
+  font-size: 3em;
+  border: 5px solid #E98074;
+  border-radius: 35px;
+  margin: 100px;
+  height: 200px;
+  padding: 28px;
+  width: 80%;
+}
+
+#login a {
+  vertical-align: 100%;
+  margin-right: 15px;
+}
+
+#spotify-logo {
+  width: 20%;
+  display: inline-block;
+}
