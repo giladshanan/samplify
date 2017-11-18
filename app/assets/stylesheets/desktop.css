@@ -44,13 +44,13 @@
 
 .profile-pic {
   margin: auto;
-  width: 40%;
+  width: 150px;
   border-radius: 25%;
   padding: 10px;
 }
 
 .profile-name {
-  font-size: 5em;
+  font-size: 2em;
   display: inline-block;
   color: #E85A4F;
   margin: auto;
@@ -63,6 +63,44 @@
   font-family: 'Permanent Marker', cursive;
   margin-left: 2%;
 }
+
+.playlist-button, .sampler-button {
+  font-family: 'Permanent Marker';
+  font-size: 2.5em;
+  color: #FFF1D0;
+  width: 190px;
+  outline: none;
+  background-color: #E85A4F;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin: 5px;
+  height: 100px;
+}
+
+.pressed {
+  background-color: #E98074;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.session-buttons {
+  display: inherit;
+  position: absolute;
+  bottom: 10px;
+  left: 35px;
+/*  position: fixed;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  padding-bottom: 100px;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-bottom: 80px;*/
+/*  vertical-align: bottom;
+*/}
 
 .profile-buttons {
   position: relative;
@@ -80,7 +118,7 @@
 }
 
 .playlist-link {
-  font-size: 2em;
+  font-size: 1em;
   text-align: center;
   margin-bottom: .2em;
 }
@@ -96,17 +134,17 @@
 }
 
 .page-content-left, .page-content-right {
-  height: 60%;
-  width: 90%;
+  height: 90%;
+  width: 350px;
   padding-right: 5px;
-  /*overflow-y: scroll;*/
+  overflow-y: scroll;
   overflow-x: hidden;
   border: 3px solid #E98074;
   border-radius: 15px;
   display: block;
   position: absolute;
-  top: 33em;
-  left: 3em;
+  top: 1em;
+  left: 28em;
 }
 
 .page-content-right {
