@@ -58,7 +58,7 @@ a:hover {
   margin: 25px;
   margin-bottom: 25px;
   display: inline-block;
-  border-radius: 10%;
+  border-radius: 15px;
 }
 
 .errors {
